@@ -1,0 +1,63 @@
+extends layout
+block content
+ div.container#container
+  div.stock-container
+   h1#main-title.title Stocks
+   div.stock-1.stock
+     div.stock-title
+      h1(class='title') #{apple['Meta Data']['2. Symbol']}
+      div
+       p open   : #{apple['Weekly Time Series'][today]['1. open']}
+       p high   : #{apple['Weekly Time Series'][today]['2. high']}
+       p closed : #{apple['Weekly Time Series'][today]['4. close']}
+       p volume : #{apple['Weekly Time Series'][today]['5. volume']}
+
+   div.stock-2.stock
+     div.stock-title
+      h1(class='title') #{google['Meta Data']['2. Symbol']} 
+     div
+      p open   : #{google['Weekly Time Series'][today]['1. open']}
+      p high   : #{google['Weekly Time Series'][today]['2. high']}
+      p closed : #{google['Weekly Time Series'][today]['4. close']}
+      p volume : #{google['Weekly Time Series'][today]['5. volume']}
+
+   div.stock-3.stock
+     div.stock-title
+      h1.stock-title #{apple['Meta Data']['2. Symbol']} 
+     div
+      p open   : #{apple['Weekly Time Series'][today]['1. open']}
+      p high   : #{apple['Weekly Time Series'][today]['2. high']}
+      p closed : #{apple['Weekly Time Series'][today]['4. close']}
+      p volume : #{apple['Weekly Time Series'][today]['5. volume']}
+
+
+
+  div.news-container
+   h1#main-title.title News
+   each item in [News['articles']]
+      each array in item 
+         div(class='newsarticle')
+          h1(class='article-title')=array['title']
+          h2(class='article-author')=array['author']
+          div(class='photo-container')
+
+            if(typeof(array['urlToImage']) === 'string')
+               img(src=''+array['urlToImage']+'' class='photo')
+            else
+            
+            
+              
+
+          if(array['description'] > 25)
+            p=array['content']
+
+          else if( array['desrcription'] == null)
+            div(class='article-link')
+             p.read.content-info=array['content']
+             a.read-link.read(href=''+array['url']+'') Click To Read Full Story
+
+					
+		
+
+
+

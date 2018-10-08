@@ -1,0 +1,31 @@
+extends layout 
+block content 
+		div.container
+		div.slideshow-container-hero
+			div#slideshow.slideshow
+				h1.title Sports News
+				-var i = 0;
+				-var b = i;
+				each sportArticle in sports['articles']
+					if(typeof(sportArticle.urlToImage) === 'string' && i == 0) 
+						
+						div.slide
+							div.slide-show-image
+								img(src='' + sportArticle.urlToImage + '', class='slideshow-images' alt="")
+							if(typeof(sportArticle.author) === 'string' && typeof(sportArticle.description) === 'string')
+							div.description-text
+								p=sportArticle.author
+								p=sportArticle.description
+								a(href='' + sportArticle.url + '') Click Here For sportArticle
+								- i++
+					
+					else
+						div.slide 
+							img(src='' + sportArticle.urlToImage + '', class='slideshow-images slide-['+b+']' alt="")
+							if(typeof(sportArticle.author) === 'string' && typeof(sportArticle.description) === 'string')
+							div(class='description-text')
+								p=sportArticle.author
+								p=sportArticle.description
+								a(href='' + sportArticle.url + '') Click Here For Article
+						- b++
+

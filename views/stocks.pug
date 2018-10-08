@@ -1,0 +1,28 @@
+extends layout
+block content 
+	div.container
+		div.slideshow-container-hero
+			div#slideshow.slideshow
+				h1.title Business News
+				-var i = 0;
+				-var b = i;
+				each article in stockNews['articles']
+					if(typeof(article.urlToImage) === 'string' && i == 0) 	
+						div.slide
+							div.slide-show-image
+								img(src='' + article.urlToImage + '', class='slideshow-images' alt="")
+							if(typeof(article.author) === 'string' && typeof(article.description) === 'string')
+							div.description-text
+								p=article.author
+								p=article.description
+								a(href='' + article.url + '') Click Here For Article
+								- i++
+					else
+						div.slide 
+							img(src='' + article.urlToImage + '', class='slideshow-images slide-['+b+']' alt="")
+							if(typeof(article.author) === 'string' && typeof(article.description) === 'string')
+							div(class='description-text')
+								p=article.author
+								p=article.description
+								a(href='' + article.url + '') Click Here For Article
+						- b++
